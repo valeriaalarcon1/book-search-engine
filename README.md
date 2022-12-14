@@ -1,7 +1,7 @@
 # Book Search Engine
 Module 21 Challenge - Book Search Engine
 
-
+This is a book search engine created using react that takes a fully functioning Google Books API search enginge and refactors it to be a GraphQL API built with Apollo Server.
 
 ## User Story
 `
