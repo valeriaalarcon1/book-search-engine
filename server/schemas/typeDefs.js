@@ -32,7 +32,7 @@ module.exports = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         signup(email: String!, usernanme: String!, password: String!): Auth
-        saveBook(bookId: ID!, authors: [String], title: String!, description: Strin, image: String!): User
+        saveBook(bookId: ID!, authors: [String], title: String!, description: String, image: String!): User
         deleteBook(bookId: ID!): User
     }
 `;
