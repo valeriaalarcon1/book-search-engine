@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import Auth from './utils/auth';
 import { setContext } from '@apollo/client/link/context'; 
@@ -34,9 +34,9 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route exact path='/' component={SearchBooks} />
-            <Route exact path='/saved' component={SavedBooks} />
-            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+            <Route path='/' component={SearchBooks} />
+            <Route path='/saved' component={SavedBooks} />
+            <Route path="*" element={<h1 className="display-2">Wrong page!</h1>}/>
           </Routes>
         </>
       </Router>

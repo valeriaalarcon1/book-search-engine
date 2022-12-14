@@ -26,7 +26,7 @@ module.exports = {
                 throw new AuthenticationError('Incorrect password');
             }
             const token = signToken(user);
-            return {token, user};
+            return { token, user };
         },
         saveBook: async (parent, args, context) => {
             if (!context.user) {
@@ -45,11 +45,11 @@ module.exports = {
             }
             const updatedUser = await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $pull: { savedBooks: {bookId: args.bookId}}},
+                { $pull: { savedBooks: { bookId: args.bookId }}},
                 { new: true }
             );
             return updatedUser;
-        }
+        },
     },
 
 }
