@@ -19,7 +19,10 @@ module.exports = {
             if (!user) {
                 throw new AuthenticationError('Incorrect login information');
             }
-            if (!correctPw) {
+
+            const correctPassword = await user.isCorrectPassword(password);
+
+            if (!correctPassword) {
                 throw new AuthenticationError('Incorrect password');
             }
             const token = signToken(user);
@@ -33,6 +36,17 @@ module.exports = {
                 { _id: context.user._id },
                 { $addToSet: { savedBooks: args }},
                 { new: true, runValidators: true }
+            );
+            return updatedUser;
+        },
+        deleteBook: async (parent, args, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You must be logged in to delete a book');
+            }
+            const updatedUser = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $pull: { savedBooks: {bookId: args.bookId}}},
+                { new: true }
             );
             return updatedUser;
         }
